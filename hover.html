@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body, ul, li {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .box {
+            opacity: 0;
+            position: absolute;
+            height: 50px;
+            top: 350px;
+            left: 400px;
+            width: 400px;
+            transition: 0.6s;
+            background: -webkit-linear-gradient(top, #FFFFFF, #ffe7e2);
+        }
+
+        .header {
+            tansition: 0.6s;
+            width: 400px;
+            height: 30px;
+            padding: 10px;
+            font-size: 20px;
+            position: relative;;
+            opacity: 0;
+        }
+
+        .list {
+            position: relative;
+            top: 50px;
+            width: 400px;
+            -webkit-transform-style: preserve-3d;
+            -webkit-perspective: 800px;
+        }
+
+        .list li {
+            text-align: center;
+            line-height: 35px;
+            width: 400px;
+            height: 35px;
+            opacity: 0;
+            -webkit-transform-origin: top;
+            -webkit-transform: rotateX(120deg);
+        }
+
+        .list li:hover {
+            background: rgba(250, 102, 66, 0.1);
+            box-shadow: 0px 30px 80px rgba(148, 92, 78, 0.4);
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oBox = document.getElementById('box');
+            var oDiv = oBox.getElementsByTagName('div')[0];
+            var oUl = oBox.getElementsByTagName('ul')[0];
+            var aLi = oUl.children;
+
+            oDiv.style.opacity = 1;
+            oBox.style.opacity = 1;
+            oUl.style.transition = "0.5s 600ms linear";
+            oBox.addEventListener("webkitTransitionEnd", fnEnd, false);
+
+            function fnEnd() {
+                this.removeEventListener("webkitTransitionEnd", fnEnd, false);
+                oUl.style.top = 0;
+                oBox.style.top = '300px';
+                oBox.style.height = '230px';
+                for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].style.transition = "0.5s " + (300 + i * 200) + "ms";
+                    aLi.off = true;
+                    aLi[i].style.opacity = 1;
+                    aLi[i].style.WebkitTransform = "rotateX(0deg)";
+
+                    aLi[i].onmouseover = over;
+                    aLi[i].onmouseout = function () {
+                        if (this.off) {
+                            this.style.WebkitTransform = "rotateY(0deg)";
+                        }
+                    };
+                    aLi[i].onclick = fnClick;
+                }
+            }
+
+            function over(ev) {
+                var iX = ev.clientX - getLeft(this);
+                this.style.transition = '0.6s';
+
+                if (iX > this.offsetWidth / 2) {
+                    this.style.WebkitTransform = 'rotateY(30deg)';
+                }
+                else {
+                    this.style.WebkitTransform = 'rotateY(-30deg)';
+                }
+
+            }
+
+            function fnClick(ev) {
+
+                var iX = ev.clientX - getLeft(this);
+                var iDeg = iX > this.offsetWidth / 2 ? -180 : 180;
+                var iMax = 0;
+                var iNow = 0;
+                //alert(iDeg);
+
+                for (var i = 0; i < aLi.length; i++) {
+                    if (iMax < Math.abs(i - this.index)) {
+                        iMax = Math.abs(i - this.index);
+                        iNow = i;
+                    }
+                    aLi[i].off = false;
+                    aLi[i].style.transition = "0.5s " + Math.abs(i - this.index) * 100 + "ms cubic-bezier(0.115, -0.195, 0.255, -0.280)";
+                    aLi[i].style.WebkitTransform = "rotateY(" + iDeg + "deg)";
+                }
+                aLi[iNow].addEventListener("webkitTransitionEnd", fnEnd, false);
+            }
+
+            function getLeft(obj) {
+                var iLeft = 0;
+
+                while (obj) {
+                    iLeft += obj.offsetLeft;
+                    obj = obj.offsetParent;
+                }
+                return iLeft;
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div class="box" id="box">
+    <div class="header">计算机科学与技术</div>
+    <ul class="list">
+        <li>JAVA</li>
+        <li>计算机网络</li>
+        <li>信息安全技术</li>
+        <li>JavaScript</li>
+        <li>操作系统</li>
+    </ul>
+</div>
+</body>
+</html>

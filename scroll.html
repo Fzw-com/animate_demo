@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+#div1{
+    width:30px;
+	height:500px;
+	background:#ACD6E6;
+	position:absolute;
+	left:10px;
+	top:10px;	
+}	
+#div2{
+    width:30px;
+	height:30px;
+	position:absolute;
+	background:#9236C9;
+	left:0;
+	top:0;
+}
+img{
+   width:380px;
+   height:0;
+   position:absolute;
+   left:55px;
+   top:10px;
+}
+</style>
+</head>
+<script type="text/javascript">
+  window.onload=function(){
+  var oDiv1=document.getElementById("div1");
+  var oDiv2=document.getElementById("div2");
+  var oImg=document.getElementsByTagName("img")[0];
+  var iMaxTop=oDiv1.offsetHeight-oDiv2.offsetHeight;
+  oDiv2.onmousedown=function(ev){
+     var ev=ev || event;
+	 var disY=ev.clientY-this.offsetTop;
+  document.onmousemove=function(ev){
+     var ev=ev || event;
+	 T=ev.clientY-disY;
+	 if(T<0){
+	  T=0;
+	 }
+	 else if(T>iMaxTop){
+	   T=iMaxTop;
+	 }
+	 oDiv2.style.top=T+'px';
+	 var iScal=T/iMaxTop;
+	 oImg.style.height=500 * iScal +'px';
+  }
+  document.onmouseup=function(){
+     document.onmouseup=document.onmousemove=null;
+  }
+  return false;
+  }
+}
+
+//滚动条控制其他
+</script>
+<body>
+<div id="div1">
+	<div id="div2"></div>
+</div>
+<img src="img/3.jpg" />
+<!--<span>
+    滚动条控制其他元素主要是对onmousedown,onmousemove,onmouseup的运用，动画主要是用到了鼠标移动距离浏览器的距离与距离相对父元素的距离的比值
+    ，主要考察clientY,offsetTop,offsetHeight使动画更加自然。</br>
+    </span>-->
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>无标题文档</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    #wrap {
+        width: 1195px;
+        height:750px;
+        margin: 0 auto;
+       /* background: #f1f1f1;*/
+        position: relative;
+    }
+
+    input {
+        background: #009999;
+        width: 116px;
+        height: 36px;
+        color: white;
+        line-height: 36px;
+        position: absolute;
+        top: 31px;
+    }
+
+    #btn1 {
+        left: 510px;
+    }
+
+    #btn2 {
+        left: 638px;
+    }
+
+    img {
+        width: 150px;
+        height: 230px;
+    }
+
+    ul {
+        width: 688px;
+        position: absolute;
+        left: 350px;
+    }
+
+    #col {
+        top: 88px;
+    }
+
+    li {
+        width: 150px;
+        height: 273px;
+        background: white;
+        padding: 10px;
+        float: left;
+        margin-right: 2px;
+    }
+
+    p {
+        width: 150px;
+        height: 43px;
+        line-height: 43px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        background: #f1f1f1;
+        color: #006699
+    }
+</style>
+
+<script>
+    window.onload = function () {
+        var oBtn1 = document.getElementById('btn1');
+        var oBtn2 = document.getElementById('btn2');
+        var oUl = document.getElementById('col');
+        var aLi = oUl.getElementsByTagName('li');
+        var arr = [];
+        var arr1 = [];
+        var flag = true;
+        var original = oUl.innerHTML;
+
+        for (var i = 0; i < aLi.length; i++) {
+            arr.push(i);
+            arr1.push(i);
+        }
+        arr.sort(function (a, b) {
+            return b - a;
+        });//从大到小
+        arr1.sort(function (a, b) {
+            return 0.5 - Math.random(b - a);
+        });//随机
+
+        oBtn1.onclick = function () {
+            if (flag) {
+                for (var i = 0; i < aLi.length; i++) {
+                    oUl.appendChild(aLi[arr[i]]);
+                }
+            }
+            else {
+                oUl.innerHTML = original;
+            }
+            flag ? oBtn1.value = '从小到大' : oBtn1.value = '从大到小';
+            flag = !flag;
+        }
+        oBtn2.onclick = function () {
+            for (var i = 0; i < aLi.length; i++) {
+                oUl.appendChild(aLi[arr1[i]]);
+            }
+            flag = false;
+        }
+    }
+</script>
+
+<body>
+
+<div id="wrap">
+    <input type="button" id="btn1" value="从大到小">
+    <input type="button" id="btn2" value="打乱顺序">
+    <ul id="col">
+        <li>
+            <img src="img/sort-img/1.jpg">
+            <p>1-钟汉良</p>
+        </li>
+        <li>
+            <img src="img/sort-img/2.jpg">
+            <p>2-钟汉良</p>
+        </li>
+        <li>
+            <img src="img/sort-img/3.jpg">
+            <p>3-钟汉良</p>
+        </li>
+        <li>
+            <img src="img/sort-img/4.jpg">
+            <p>4-钟汉良</p>
+        </li>
+
+        <li>
+            <img src="img/sort-img/5.jpg">
+            <p>5-钟汉良</p>
+        </li>
+        <li>
+            <img src="img/sort-img/6.jpg">
+            <p>6-钟汉良</p>
+        </li>
+        <li>
+            <img src="img/sort-img/7.jpg">
+            <p>7-钟汉良</p>
+        </li>
+        <li>
+            <img src="img/sort-img/8.jpg">
+            <p>8-钟汉良</p>
+        </li>
+    </ul>
+    <!--<p>图片排序主要用到的是 arr.sort(function(a,b){return b-a;})，
+    arr1.sort(function(a,b){return 0.5-Math.random(b-a);})这两个方法</p>-->
+</div>
+
+</body>
+</html>

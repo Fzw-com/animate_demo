@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>无标题文档</title>
+    <style type="text/css">
+        #box {
+            width: 450px;
+            height: 540px;
+            border: 5px #F0F0F0 solid;
+            margin: 0 auto;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #box a {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 250px;
+            background: #939393;
+            opacity: 0.6;
+            text-decoration: none;
+            font-size: 24px;
+            line-height: 50px;
+            color: #FFF;
+            text-align: center;
+            z-index: 2;
+        }
+
+        #box a:hover {
+            background: #AAA;
+        }
+
+        #box .prev {
+            left: 5px;
+        }
+
+        #box .next {
+            right: 5px;
+        }
+
+        #box ul {
+            width: 198px;
+            position: absolute;
+            bottom: 20px;
+            left: 95px;
+            margin: 0;
+            z-index: 3;
+            cursor: pointer;
+        }
+
+        #box li {
+            margin: 0 4px;
+            width: 20px;
+            height: 20px;
+            background: #FFF;
+            list-style: none;
+            float: left;
+            border-radius: 50% 50%;
+        }
+
+        #box .active {
+            background: #F4E846;
+        }
+
+        #box .pic {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 900px;
+            height: 540px;
+        }
+
+        #box img {
+            width: 450px;
+            height: 540px;
+            float: left;
+        }
+    </style>
+</head>
+<script type="text/javascript" src="js/doMove.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        var oDiv = document.getElementById("box");
+        var aA = oDiv.getElementsByTagName("a");
+        var oImgDiv = oDiv.getElementsByTagName("div")[0];
+        var oImg = oImgDiv.getElementsByTagName("img");
+        var aLi = oDiv.getElementsByTagName("li");
+        var iNow = iNext = 0;
+        var onOff = true;
+        var timer = 0;
+        var arr = ["img/carouse-img/1.jpg", "img/carouse-img/2.jpg", "img/carouse-img/3.jpg", "img/carouse-img/4.jpg", "img/carouse-img/5.jpg", "img/carouse-img/6.jpg"];
+
+        function autoPlay() {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                iNow++;
+                if (iNow == arr.length) {
+                    iNow = 0;
+                }
+                motion(1)
+            }, 1000);
+        }
+
+        autoPlay();
+        oDiv.onmouseout = autoPlay;//鼠标移开自由移动
+        oDiv.onmousedown = function () {//鼠标点击停止自由移动
+            clearInterval(timer);
+        }
+        aA[1].onclick = function () {
+            if (!onOff || this.index == iNext) {
+                return;
+            }
+            onOff = false;
+            iNow++;
+            if (iNow == arr.length) {
+                iNow = 0;
+            }
+            /*		oImg[0].src=arr[iNext];
+                    oImg[1].src=arr[iNow];
+                    oImgDiv.style.left=0;
+                    doMove(oImgDiv,"left",34,-450,function(){
+                        onOff=true;
+                        });
+
+                    iNext=iNow;*/
+            motion(1);
+        }
+        aA[0].onclick = function () {
+            if (!onOff || this.index == iNext) {
+                return;
+            }
+            onOff = false;
+            iNow--;
+            if (iNow == -1) {
+                iNow = arr.length - 1;
+            }
+            /*oImg[0].src=arr[iNow];
+            oImg[1].src=arr[iNext];
+            oImgDiv.style.left=-450+"px";
+            doMove(oImgDiv,"left",34,0,function(){
+                onOff=true;
+                });
+
+            iNext=iNow;*/
+            motion(-1);
+        }
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].index = i;
+            aLi[i].onclick = function () {
+                if (this.index > iNext) {
+                    iNow = this.index;
+                    motion(1);
+                }
+                if (this.index < iNext) {
+                    iNow = this.index;
+                    motion(-1);
+                }
+            }
+        }
+
+        function motion(n) {
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].className = '';
+            }
+            aLi[iNow].className = 'active';
+            if (n > 0) {
+                oImg[0].src = arr[iNext];
+                oImg[1].src = arr[iNow];
+                oImgDiv.style.left = 0;
+                doMove(oImgDiv, "left", 34, -450, function () {
+                    onOff = true;
+                });
+            }
+            if (n < 0) {
+                oImg[0].src = arr[iNow];
+                oImg[1].src = arr[iNext];
+                oImgDiv.style.left = -450 + "px";
+                doMove(oImgDiv, "left", 34, 0, function () {
+                    onOff = true;
+                });
+            }
+            iNext = iNow;
+        }
+
+    }
+</script>
+<body>
+<div id="box">
+    <a class="prev" href="javascript:;"><</a>
+    <a class="next" href="javascript:;">></a>
+    <ul>
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="pic">
+        <img src="img/carouse-img/1.jpg"/>
+        <img src="img/carouse-img/1.jpg"/>
+    </div>
+</div>
+</body>
+</html>

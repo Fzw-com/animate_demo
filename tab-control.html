@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+	*{
+	margin:0;
+	padding:0;
+	}
+	li{
+	list-style:none;
+	}
+	.warp{
+	  width:966px;
+	  padding:8px 4px;
+	  height:332px;
+	  border:1px solid #c6c6c6;
+	  margin:20px auto;
+	}
+	.left{
+	  float:left;
+	  background:#C6C7C0;
+	}
+	.left li{
+	  border-left:1px solid #c6c6c6;
+	  border-top:1px solid #c6c6c6;
+	  width:145px;
+	  height:82px;
+	  line-height:82px;
+	  text-align:center;
+	  font-size:16px;
+	}
+	.li_active{
+		background:#FFF;
+		}
+    #right div{
+	  float:left;
+	  width:812px;
+	  height:330px;
+	  position:relative;
+	  display:none;
+	}
+	#right img{
+	  width:812px;
+	  height:330px;
+	  display:none;
+	}
+	#right ul{
+	  width:812px;
+	  position: absolute;
+	  color:#000;
+	  top:301px;
+	}
+	#right li{
+	  height:30px;
+	  width:33.2%;
+	  float:left;
+	  line-height:30px;
+	  margin-right:1px;
+	  background:#C6C7C0;
+	  opacity:0.6;
+	  text-align:center;
+	  font-size:12px;
+	  color:#000;
+	}
+	#right .img_active{
+	 background:#ef3163;
+	}
+	#right .flex4 li{
+	width:24.8%;
+	}
+</style>
+</head>
+<script type="text/javascript">
+window.onload=function(){
+   var oUl=document.getElementById("left");
+   var oLi=oUl.getElementsByTagName("li");
+   var oRight=document.getElementById("right");
+   var oDiv=oRight.getElementsByTagName("div");
+   for(var i=0;i<oLi.length;i++){
+	   oLi[i].index=i;
+     oLi[i].onmouseover=function(){
+		 for(j=0;j<oDiv.length;j++){
+		 oDiv[j].style.display="none";
+		 oLi[j].className='';
+		 }
+	    oDiv[this.index].style.display="block";
+		this.className="li_active";
+	 }
+   }
+   for(var i=0;i<oDiv.length;i++){
+	   tab(oDiv[i]);
+   }
+   function tab(obj){
+     var oImg=obj.getElementsByTagName("img");
+	 var oLi=obj.getElementsByTagName("li");
+	 for(var i=0;i<oLi.length;i++){
+		 oLi[i].index=i;
+	  oLi[i].onmouseover=function(){
+	       for(var j=0;j<oImg.length;j++){
+		    oImg[j].style.display="none";
+			oLi[j].className='';
+		   }
+		   oImg[this.index].style.display="block";
+		   this.className="img_active";
+	  }
+	 }
+   }
+}
+</script>
+<body>
+<div class="warp">
+   <ul class="left" id="left">
+   		<li class="li_active">最热团购</li>
+        <li>商城特惠</li>
+        <li>名品推荐</li>
+        <li>缤纷活动</li>		
+   </ul>
+   <div id="right">
+   		<div style="display: block;">
+        	<img src="img/tab-img/a1.jpg" style="display:block" />
+            <img src="img/tab-img/a2.jpg" />
+            <img src="img/tab-img/a3.jpg" />
+            <ul>
+            	<li class="img_active">第一个第一项</li>
+                <li>第一个第二项</li>
+                <li>第一个第三项</li>
+            </ul>
+        </div>
+        <div>
+            <img src="img/tab-img/b1.jpg" style="display:block" />
+            <img src="img/tab-img/b2.jpg" />
+            <img src="img/tab-img/b3.jpg" />
+            <img src="img/tab-img/b4.jpg" />
+        	<ul class="flex4">
+            	<li class="img_active">第二个第一项</li>
+                <li>第二个第二项</li>
+                <li>第二个第三项</li>
+                <li>第二个第四项</li>
+            </ul>
+        </div>
+        <div>
+        	<img src="img/tab-img/c1.jpg" style="display:block" />
+            <img src="img/tab-img/c2.jpg" />
+            <img src="img/tab-img/c3.jpg" />
+            <ul>
+            	<li class="img_active">第三个第一项</li>
+                <li>第三个第二项</li>
+                <li>第三个第三项</li>
+            </ul>
+        </div>
+        <div>
+        	<img src="img/tab-img/d1.jpg" style="display:block"/>
+            <img src="img/tab-img/d2.jpg" />
+            <img src="img/tab-img/d3.jpg" />
+            <img src="img/tab-img/d4.jpg" />
+            <ul class="flex4">
+            	<li class="img_active">第四个第一项</li>
+                <li>第四个第二项</li>
+                <li>第四个第三项</li>
+                <li>第四个第四项</li>
+            </ul>
+        </div>
+   </div>
+</div>
+</body>
+</html>

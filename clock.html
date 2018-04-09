@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>画时钟</title>
+    <style type="text/css">
+
+        #box1 {
+            width: 200px;
+            height: 200px;
+            border: 2px #000 solid;
+            margin: 100px auto 0;
+            padding: 0;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #box1 ul {
+            height: 200px;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            list-style: none;
+            background: url(img/9.jpg) -110px no-repeat;
+        }
+
+        #hour, #min, #sec {
+            position: absolute;
+            background: #000;
+            -webkit-transform-origin: bottom;
+        }
+
+        #box1 ul li {
+            width: 2px;
+            height: 6px;
+            background: #000;
+            position: absolute;
+            left: 99px;
+            top: 0;
+            -webkit-transform-origin: 0 100px;
+            z-index: 3;
+        }
+
+        #box1 li:nth-of-type(5n+1) {
+            height: 10px;
+            background: #000;
+        }
+
+        #hour {
+            width: 6px;
+            height: 50px;
+            bottom: 100px;
+            left: 97px;
+        }
+
+        #min {
+            width: 4px;
+            height: 70px;
+            bottom: 100px;
+            left: 98px;
+        }
+
+        #sec {
+            width: 2px;
+            height: 90px;
+            bottom: 100px;
+            left: 99px;
+        }
+    </style>
+</head>
+<script>
+    window.onload = function () {
+        var oBox = document.getElementById('box1');
+        var oUl = oBox.getElementsByTagName('ul')[0];
+        var oHour = document.getElementById('hour');
+        var oMin = document.getElementById('min');
+        var oSec = document.getElementById('sec');
+
+        newTime(oHour, oMin, oSec);
+        setInterval(function () {
+            newTime(oHour, oMin, oSec);
+        }, 1000);
+
+        function newTime(oHour, oMin, oSec) {
+            /*var oDate=new Date();
+            var iSec=oDate.getSeconds();
+            var iMin=oDate.getMinutes()+iSec/60;
+            var iHour=(oDate.getHours()%12)+iMin/60;
+            oSec.style.WebkitTransform="rotate("+iSec*6+"deg)";
+            oMin.style.WebkitTransiform="rotate("+iMin*6+"deg)";
+            oHour.style.WebkitTransform="rotate("+iHour*30+"deg)";
+                */
+
+            var oDate = new Date();
+            var iSec = oDate.getSeconds();
+            var iMin = oDate.getMinutes() + iSec / 60;
+            var iHour = (oDate.getHours() % 12) + iMin / 60;
+            oSec.style.WebkitTransform = "rotate(" + (iSec * 360 / 60) + "deg)";
+            oMin.style.WebkitTransform = "rotate(" + (iMin * 360 / 60) + "deg)";
+            oHour.style.WebkitTransform = "rotate(" + (iHour * 360 / 12) + "deg)";
+        }
+
+        for (var i = 0; i < 60; i++) {
+            oUl.innerHTML += "<li style='-webkit-transform:rotate(" + 6 * i + "deg)'></li>";
+        }
+    }
+</script>
+<body>
+<div id="box1">
+    <ul>
+    </ul>
+    <div id="hour"></div>
+    <div id="min"></div>
+    <div id="sec"></div>
+</div>
+</body>
+</html>

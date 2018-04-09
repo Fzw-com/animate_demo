@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+div,ul,p,img{padding:0;margin:0;}
+li{list-style:none;}
+#wrap{margin:50px auto 0;width:500px;height:300px;overflow:hidden;position:relative;}
+#box{width:500px;height:300px;position:relative;}
+#box ul{height:300px;position:absolute;}
+#box li{float:left;position:relative;}
+#box img{width:500px;height:300px;display:block;}
+#box p{position:absolute;bottom:-30px;height:30px;width:500px;background:#000;opacity:0.5;color:#fff;}
+</style>
+<script src="js/doMove.js"></script>
+<script type="text/javascript">
+window.onload=function(){
+	var oDiv=document.getElementById('box');
+	var oUl=oDiv.getElementsByTagName('ul')[0];
+	var aLi=oDiv.getElementsByTagName('li');
+	var aP=oDiv.getElementsByTagName('p');
+	oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
+	
+	function fnTab(){
+		doMove(aP[0],'bottom',12,0,function(){
+		setTimeout(function(){
+			doMove(oDiv,'left',12,-500,function(){
+				for(var i=0;i<aP.length;i++){
+					aP[i].style.bottom=-30+'px';
+					}
+					oUl.appendChild(aLi[0]);
+					oDiv.style.left=0;
+					fnTab();
+					   });
+        			},1500);
+
+			})
+			
+		}
+		fnTab();
+	}
+</script>
+</head>
+
+<body>
+<div id="wrap">
+	<div id="box">
+    	<ul>
+        	<li>
+            	<img src="img/automatic-img/1.jpg" />
+                <p>blablablablablablabla1111</p>
+            </li>
+            <li>
+            	<img src="img/automatic-img/2.jpg" />
+                <p>blablablablablablabla2222</p>
+            </li>
+            <li>
+            	<img src="img/automatic-img/3.jpg" />
+                <p>blablablablablablabla3333</p>
+            </li>
+            <li>
+            	<img src="img/automatic-img/4.jpg" />
+                <p>blablablablablablabla4444</p>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

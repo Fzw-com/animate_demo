@@ -1,0 +1,942 @@
+/*头部*/
+.header{
+    min-width: 1092px;
+    background: #f2f2f2;
+}
+.wrapHeader{
+    width:1092px;
+    margin: 0 auto;
+    line-height: 30px;
+    height: 30px;
+    border-bottom: 1px #ededee solid;
+}
+.headerLeft{
+    float: left;
+}
+.headerLeft a{
+    display: inline-block;
+    font-size: 12px;
+    color: #666666;
+    margin-right: 10px;
+}
+.headerLeft .headerLine{
+    width: 1px;
+    height: 12px;
+    color: #d3ccd3;
+}
+.headerLeft2{
+    float: left;
+    margin-left: 20px;
+}
+.headerLeft2 i{
+    width: 8px;
+    display: inline-block;
+    height :15px;
+    vertical-align: middle;
+    background: url("../img/haitao-img/phone.png") no-repeat;
+}
+.headerLeft2 a{
+    display: inline-block;
+    font-size: 12px;
+    color: #666666;
+}
+.headerRight{
+    float: right;
+}
+.headerRight li{
+    float: left;
+    padding-left: 14px;
+    font-size: 12px;
+}
+.headerRight i{
+    display: inline-block;
+    vertical-align: middle;
+    width: 11px;
+    height:15px;
+    margin-right: 4px;
+    background: url("../img/haitao-img/headerRight.png") no-repeat;
+}
+.headerRight .flag{
+    background-position: 0 0;
+}
+.headerRight .money{
+    background-position: 0 -15px;
+}
+.headerRight a{
+
+    display: inline-block;
+    color: #666666;
+}
+.headerRight strong{
+    width: 0;
+    height: 0;
+    border: 4px solid transparent;
+    display: inline-block;
+    border-top-color: #666666;
+    margin-left:4px;
+    transition:0.2s;
+    position: relative;
+    top:3px;
+}
+.headerRight  span{
+    margin-left: 14px;
+    width: 1px;
+    height: 12px;
+    display: inline-block;
+    color: #d3ccd3;
+}
+.headerRight li:hover strong{
+    border-bottom-color: #f2f2f2;
+    position: relative;
+    top:-2px;
+    transition:0.2s;
+    -webkit-transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+    transform:rotate(180deg);
+    -webkit-transform-origin:center center;
+    -moz-transform-origin:center center;
+    trnsform-origin:center center;
+}
+
+/*内容部分*/
+.content{
+    width:1092px;
+    margin: 0 auto;
+}
+.search{
+    margin: 24px 0 0 20px;
+}
+.search .logo{
+    float: left;
+    width: 220px;
+    height:42px;
+    background: url("../img/haitao-img/logo.png") no-repeat;
+    margin: 6px 134px 0 0;
+}
+.searchCenter{
+    float: left;
+    font-size: 0;
+}
+.searchCenter .searchTxt{
+    position: relative;
+}
+.searchTxt i{
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top:10px;
+    left: 8px;
+    background: url("../img/haitao-img/icon1.png") no-repeat -468px -668px;
+}
+.searchTxt input{
+    height: 32px;
+    line-height: 32px;
+    width: 422px;
+    padding: 0 6px 0 28px;
+    color: #999999;
+    font-size: 14px;
+    border: 2px #333333 solid;
+    border-right: none;
+    display: inline-block;
+}
+.searchTxt span{
+    display: inline-block;
+    vertical-align: top;
+    width: 50px;
+    height: 36px;
+    border-radius: 0 3px 3px 0;
+    background: #333333 url("../img/haitao-img/icon1.png") -489px -656px;
+}
+.searchList{
+    margin-top: 8px;
+}
+.searchList li{
+    font-size: 12px;
+    height:12px;
+    line-height: 12px;
+    float: left;
+}
+.searchList span{
+    height:12px;
+    width: 1px;
+    color: #b299b2;
+    margin: 0 12px;
+}
+.searchList a{
+    color: #999999;
+}
+.searchList a:hover{
+    color: #e7143c;
+}
+.searchList .active{
+    color: #e7143c;
+}
+.searchRight{
+    float: right;
+    font-size: 12px;
+    line-height: 34px;
+    border: 1px #dddddd solid;
+    border-radius: 2px;
+    padding: 0 22px;
+}
+.searchRight i{
+    width: 23px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    background: url("../img/haitao-img/icon1.png") no-repeat -960px -210px;
+
+}
+.searchRight span{
+    color: #000;
+    vertical-align: middle;
+}
+.content2{
+    margin-top: 20px;
+}
+.topTab{
+    width:1092px;
+    margin: 0 auto;
+    position: relative;
+}
+.topTab .tabList1{
+    position: absolute;
+    top:0;
+    left: 0;
+}
+.tabList1 .firstList{
+    border-bottom: none;
+    background: #151515;
+    line-height: 41px;
+    height: 41px;
+}
+.tabList1 .lastList{
+    border-bottom: none;
+    line-height: 40px;
+    height: 40px;
+}
+.tabList1 li{
+    padding: 0 10px;
+    width: 140px;
+    background: #2d2c2b;
+    line-height: 39px;
+    height: 39px;
+    font-size: 14px;
+    border-bottom: 1px #373635 solid;
+}
+.tabList1 li img{
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    margin: 0 14px;
+}
+.tabList1 span{
+    color: #fff;
+    cursor: pointer;
+}
+.tabList1 i{
+    margin: 0 10px 0 20px;
+    font-family: "宋体";
+    color: #838475;
+    vertical-align: middle;
+    font-size: 18px;
+}
+.tabList2{
+    margin-left: 200px;
+}
+.tabList2 li{
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    margin-right:40px;
+    font-weight: bold;
+}
+.tabList2 a{
+    color: #333333;
+}
+/*轮播图*/
+.showImg{
+    min-width: 1092px;
+    height:400px;
+    overflow: hidden;
+    border-top: 2px #151515 solid ;
+}
+.imgList{
+
+}
+.imgList li{
+    float: left;
+}
+.imgList img{
+    width: 100%;
+    height: 400px;
+}
+
+.sellPoint{
+    height: 44px;
+    line-height: 44px;
+    width: 1092px;
+    margin: 0 auto;
+}
+.sellList{
+    float: left;
+}
+.sellList li{
+
+    float: left;
+    font-size: 12px;
+}
+.sellList a{
+    color: #999999;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 40px 0 6px;
+}
+.sellList i{
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    vertical-align: middle;
+    background: url("../img/haitao-img/icon2.png") no-repeat;
+}
+.sellList .sellTrue{
+    
+}
+.sellList .sellBack{
+    background-position: 0 -22px;
+}
+.searchList .noMoney{
+    background-position: 0 -44px;
+}
+.sellPoint p{
+    float: right;
+    font-size: 12px;
+    color: #e01f35;
+}
+.sellPoint strong{
+    width: 8px;
+    height: 15px;
+    margin-right: 6px;
+    display: inline-block;
+    vertical-align: middle;
+    background: url("../img/haitao-img/phone.png") no-repeat;
+}
+.content3{
+    min-width: 1092px;
+    background: #f6f6f6;
+    border-bottom: 1px #eaeaea solid;
+}
+.content3Wrap{
+    width:1092px;
+    margin: 0 auto;
+}
+.listShowImg{
+    padding-top: 20px;
+}
+.listShowImg li{
+    float: left;
+    width: 266px;
+    margin-right: 9px;
+}
+.listShowImg img{
+    width: 266px;
+}
+.listShowImg .lastImg{
+    margin-right: 0;
+}
+/*今日限时购*/
+.contentTitle{
+    margin: 40px 0 16px;
+}
+.titleLeft{
+    float: left;
+    font-size: 0;
+}
+.titleLeft h1{
+    color: #333333;
+    font-size: 22px;
+    float: left;
+}
+.titleLeft span{
+    margin: 10px 8px 0;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    color: #999999;
+}
+.titleLeft strong{
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 14px;
+    color: #999999;
+    margin-top: 4px;
+}
+.titleLeft i{
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    color: #f8e5c5;
+    border-radius: 50%;
+    background: #333333;
+
+}
+.titleRight{
+    float: right;
+    display: inline-block;
+    color: #333333;
+    font-size: 12px;
+}
+.titleRight:hover{
+    text-decoration: underline;
+}
+/*商品详情*/
+.showGoods{
+    border-top: 2px #333333 solid;
+}
+.goodsLeft{
+    float: left;
+    width: 870px;
+}
+.goodsList{
+    float: left;
+    border-right: 1px #eaeaea solid;
+    border-bottom: 1px #eaeaea solid;
+}
+.goodsLeft img{
+    width:188px;
+    height: 188px;
+    float: left;
+}
+.goodsDetail{
+    float: left;
+    margin: 13px 20px 29px;
+    position: relative;
+    width: 206px;
+}
+.goodsDetail h3{
+    height: 34px;
+    line-height: 34px;
+    color: #333333;
+    font-size: 14px;
+}
+.goodsDetail .address{
+    line-height: 20px;
+    font-size: 12px;
+    color: #666666;
+}
+.goodsDetail h1{
+    margin-top: 22px;
+    color: #e11935;
+    font-size: 18px;
+    line-height: 18px;
+    height: 18px;
+}
+.goodsDetail h1 span{
+    font-size: 12px;
+    color: #999999;
+    font-weight: normal;
+    text-decoration: line-through;
+}
+.process{
+    margin-top: 12px;
+    border: 1px #f3c7c7 solid;
+    border-radius: 8px;
+    width: 100px;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+}
+.process b{
+    position: absolute;
+    width: 20%;
+    height: 19px;
+    line-height: 19px;
+    left: 0;
+    background: #ffd2c5;
+}
+.process p{
+   color: #de2634;
+    position: relative;
+    z-index: 6;
+}
+.goodsDetail a{
+    position: absolute;
+    right:0;
+    bottom: 0;
+    display: block;
+    width: 80px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    background: #de2634;
+}
+.goodsRight{
+    float: right;
+    width:222px;
+    height: 378px;
+}
+.goodsRight img{
+    width:222px;
+    height: 378px;
+}
+/*每日新品*/
+.newGoodsWrap{
+    border-top:2px #333333 solid;
+}
+.newGoods{
+    float: left;
+}
+.newGoods li{
+    float: left;
+    width:188px;
+    position: relative;
+    padding: 10px 14px 0;
+    background: #fff;
+    border-right: 1px #eaeaea solid;
+    border-bottom: 1px #eaeaea solid;
+}
+.newImg{
+    margin-bottom: 12px;
+}
+.newImg .newGoodsImg{
+    width: 188px;
+    height: 188px;
+}
+.newImg .newFlag{
+    position: absolute;
+    width:30px;
+    height: 30px;
+    top:10px;
+    left: 10px;
+}
+.newGoods .newGoodsText,.newGoods span{
+    height:18px;
+    line-height: 18px;
+    font-size: 12px;
+}
+.newGoods .newGoodsText{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #333333;
+    font-weight: bold;
+
+}
+.newGoods span{
+    display: block;
+    color: #666;
+}
+.newGoods .newGoodsSell{
+    margin-top: 10px;
+}
+.newGoodsSell i{
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+    font-size: 12px;
+    color: #e31436;
+    border: 1px #e31436 dotted;
+    padding: 0 2px;
+    margin-right: 4px;
+
+}
+.newGoods h2{
+    line-height: 35px;
+    font-size: 16px;
+    color: #e31436;
+}
+.newGoods strong{
+    font-size: 14px;
+    font-weight: normal;
+    color: #a29999;
+    text-decoration: line-through;
+}
+.newGoodsRight{
+    float: right;
+    width: 224px;
+}
+.newGoodsRight img{
+    width:224px;
+}
+/*热门品牌*/
+.hotGoods{
+
+}
+.hotGoods .firstHotGoods{
+    border-left: 1px #eaeaea solid;
+}
+.hotGoods li{
+    border: 1px #eaeaea solid;
+    margin-left: -1px;
+    background: #fff;
+    width: 272px;
+    float: left;
+}
+.hotGoods .hotImg{
+    position: relative;
+}
+.hotImgShow{
+    width: 272px;
+}
+.hotImgLogo{
+    position: absolute;
+    width: 81px;
+    height: 80px;
+    border-radius: 50%;
+    left: 97px;
+    bottom: -40px;
+    border: 1px #ededed solid;
+}
+.hotGoods p{
+    margin: 48px auto 0;
+    height: 22px;
+    line-height: 22px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+}
+.hotGoods a{
+    color: #333333;
+}
+.hotGoods span{
+    display: block;
+    height: 22px;
+    line-height: 22px;
+    font-size: 12px;
+    color: #747474;
+    text-align: center;
+    margin:  0 auto 14px;
+}
+.hotText{
+    display: inline-block;
+    line-height: 14px;
+    color: #666666;
+}
+.hotText a{
+    color: #666666;
+}
+.hotText a:hover{
+    color: #e31436;
+}
+.hotText strong{
+    height: 12px;
+    line-height: 12px;
+    overflow: hidden;
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0 6px;
+    padding: 0;
+}
+/*美容彩妆*/
+.cosmeticsWrap{
+    border-top: 2px #333 solid;
+}
+.cosmeticsLeft{
+    float: left;
+    width: 246px;
+    height: 441px;
+    -background: url("../img/haitao-img/haitao-img7.jpg") no-repeat;
+}
+.cosmeticsList{
+    padding: 20px;
+}
+.cosmeticsList li{
+    float: left;
+    margin: 5px;
+    width: 58px;
+    height: 58px;
+    line-height: 58px;
+    border-radius: 50%;
+    background: #fff;
+    font-size: 12px;
+    text-align: center;
+}
+.cosmeticsList a{
+    color: #333333;
+}
+.cosmeticsCenter{
+    width: 600px;
+    float: left;
+}
+.cosmeticsCenter li{
+    float: left;
+    width:299px;
+    background: #fff;
+    padding-top: 18px;
+    border-right:1px #eaeaea solid;
+    border-bottom:1px #eaeaea solid;
+}
+.cosmeticsCenter li a{
+    display: block;
+}
+.cosmeticsCenter h3{
+    height: 24px;
+    line-height: 24px;
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+}
+.cosmeticsCenter p{
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #666666;
+    text-align: center;
+}
+.cosmeticsCenter img{
+    width: 188px;
+    height: 144px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 14px;
+}
+.cosmeticsRight{
+    float: right;
+    background: #fff;
+    padding: 18px 22px 0 18px;
+    border-right: 1px #eaeaea solid;
+    border-bottom: 1px #eaeaea solid;
+}
+.cosmeticsRight li{
+    margin: 10px 0 8px;
+    padding-bottom: 6px;
+    width: 205px;
+    border-bottom: 1px #eaeaea dotted;
+}
+.cosmeticsRight h3{
+    height:24px;
+    line-height: 24px;
+    font-size: 16px;
+    color: #333333;
+}
+.cosmeticsShow{
+
+}
+.cosmeticsShow img{
+    float: left;
+    width: 75px;
+    margin-right: 10px;
+}
+.hotBuy{
+    width: 120px;
+    float: left;
+}
+.hotBuy p{
+    line-height: 18px;
+    height: 38px;
+    overflow: hidden;
+    font-size: 12px;
+    color: #666666;
+}
+.hotBuy span{
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #e32a5b;
+}
+.hotBuy i{
+    font-weight: normal;
+    color: #999999;
+    text-decoration: line-through;
+}
+.lastRight{
+    border: none;
+}
+.scroll{
+    height:24px;
+    line-height: 24px;
+    text-align: center;
+}
+.scroll span{
+    display: inline-block;
+    width:8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #333333;
+
+}
+.scroll span.active{
+    background: #e1e1e1;
+}
+.hotLogo{
+    background: #fff;
+    margin: 14px 0 76px;
+    border: 1px #eaeaea solid;
+}
+.hotLogo p{
+    float: left;
+    width:118px;
+    height: 108px;
+    line-height: 108px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+.logoList{
+
+}
+.logoList li{
+    float: left;
+    margin: 0 4px;
+}
+.logoList li img{
+    width:108px;
+    height:108px;
+}
+/*正品保障*/
+.content4{
+    min-width: 1092px;
+    background: #fff;
+}
+.content4Wrap{
+    margin: 0 auto;
+    width: 1092px;
+    border-bottom: 1px #eaeaea solid;
+}
+.content4Wrap li{
+    height:44px;
+    line-height: 44px;
+    padding: 38px 0;
+    width: 25%;
+    float: left;
+}
+.content4Wrap i{
+    float: left;
+    width:45px;
+    height: 44px;
+    display: block;
+    background: url("../img/haitao-img/icon1.png") no-repeat -751px 0;
+}
+.content4Wrap .content4Right{
+    float: left;
+    margin-left: 10px;
+
+}
+.content4Right h1{
+    font-size: 18px;
+    color: #333333;
+    height: 24px;
+    line-height: 24px;
+
+}
+.content4Right span{
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    color: #333333;
+    font-size: 14px;
+}
+/*考拉海购*/
+.attention{
+    width:1092px;
+    margin: 38px auto 92px;
+}
+.attentionLeft{
+    float: left;
+    margin-left: 30px;
+}
+.attentionLeft .logoBtn{
+    display: block;
+    width:220px;
+    height: 42px;
+    margin-bottom: 20px;
+}
+.logoBtn img{
+    width:220px;
+    height: 42px;
+}
+.attentionType{
+    height: 32px;
+    line-height: 32px;
+}
+.attentionType p{
+    font-size: 12px;
+    color: #333333;
+    float: left;
+    margin-right: 14px;
+    height: 32px;
+    line-height: 32px;
+}
+.attentionList{
+    float: left;
+}
+.attentionList li{
+    float: left;
+}
+.attentionList a{
+    background: url("../img/haitao-img/icon1.png") no-repeat -752px -69px;
+    display: block;
+    width:33px;
+    height: 32px;
+    margin-right: 12px;
+}
+.attentionRight{
+    float: left;
+}
+.attentionTitle{
+    float: left;
+    border-left: 1px #eaeaea solid;
+    width:110px;
+    padding-left:24px;
+
+}
+.attentionTitle .firstAttention{
+    height:18px;
+    line-height: 18px;
+    margin-bottom: 16px;
+}
+.attentionTitle h2{
+    font-size: 18px;
+    font-weight: normal;
+    color: #333333;
+
+}
+.attentionTitle li{
+    height:24px;
+    line-height: 24px;
+    font-size: 12px;
+}
+.attentionTitle li a{
+    color: #333333;
+}
+/*脚部*/
+.footer{
+    min-width: 1092px;
+    background: #333333;
+}
+.footerWrap{
+    width:1092px;
+    margin: 0 auto;
+    padding : 20px 0 9px;
+}
+.footerWrap p{
+    text-align: center;
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    color: #c2c2c2;
+}
+.footerWrap p a{
+    color: #c2c2c2;
+}
+.footerWrap img{
+    margin-right: 10px;
+}
+.footerWrap .img1{
+    width: 80px;
+}
+.footerWrap .img2{
+    width:30px;
+}
+.footerWrap .lastText{
+    height: 30px;
+    padding: 8px 0;
+}

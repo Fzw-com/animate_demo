@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>按需加载图片</title>
+    <style type="text/css">
+        #list {
+            margin: auto 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            margin: 5px 5px;
+            border: #CCC 1px solid;
+            float: left;
+        }
+
+        img {
+            width: 260px;
+            height: 320px;
+            display: block;
+            vertical-align: top;
+        }
+    </style>
+</head>
+<script type="text/javascript">
+    window.onload = function () {
+        var oUl = document.getElementById("list");
+        var aImg = oUl.getElementsByTagName("img");
+
+        function showImg() {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            for (var i = 0; i < aImg.length; i++) {
+                if (!aImg[i].isLoad && getTop(aImg[i]) < scrollTop + document.documentElement.clientHeight) {
+                    aImg[i].src = aImg[i].getAttribute("_src");//getAttribute() 方法返回指定属性名的属性值
+                    aImg[i].isLoad = true;
+                }
+            }
+        }
+
+        showImg();
+        window.onscroll = showImg;
+
+        function getTop(obj) {
+            var iTop = 0;
+            while (obj) {
+                iTop += obj.offsetTop;
+                obj = obj.offsetParent;
+            }
+            return iTop;
+        }
+    }
+</script>
+<body>
+<ul id="list">
+    <li><img _src="img/phone-screen-img/0.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/1.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/2.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/4.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/5.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/6.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/7.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/8.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/9.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/10.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/11.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/7.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/6.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/5.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/6.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/7.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/8.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/10.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/11.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/4.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/1.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/2.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/5.jpg" src="#"/></li>
+    <li><img _src="img/phone-screen-img/6.jpg" src="#"/></li>
+</ul>
+</body>
+</html>

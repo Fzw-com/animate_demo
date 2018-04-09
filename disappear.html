@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+.box{width:300px;height:380px;border:1px #CCCCCC solid;position:relative;margin:0 auto;}
+img{width:300px;height:380px;position:absolute;transition:1s;top:0;left:0;}
+a{width:50px;height:50px;top:165px;position:absolute;background:#B3B3FF;z-index:7;}
+a:hover{background:#8080FF;}
+.prve{left:-60px;}
+.next{right:-60px;}
+</style>
+    <script src="js/domove.js"></script>
+</head>
+<script type="text/javascript">
+window.onload=function(){
+	var oDiv=document.getElementById("box");
+	var oImg=oDiv.getElementsByTagName("img");
+	var oA=oDiv.getElementsByTagName("a");
+	var num=6;
+	var n=0;
+	for(i=0;i<oImg.length;i++){
+		oImg[i].style.zIndex=num-i;
+		}
+	    oA[0].onclick=function(){
+			doMove(-300);
+			};
+		oA[1].onclick=function(){
+			doMove(300);
+			};
+		function doMove(art){
+			if(n<oImg.length-1){
+	       oImg[n].style.left=art+"px";
+			oImg[n].style.opacity=0;
+			    n++;
+			}	
+	else{
+		    n=0;
+			for(var i=0;i<oImg.length;i++){
+		    oImg[i].style.left=0;
+			oImg[i].style.opacity=1;  
+			}
+		}
+	}
+}
+</script>
+<body>
+<div id="box" class="box">
+	<img src="img/disappear-img/1.jpg" />
+    <img src="img/disappear-img/2.jpg" />
+    <img src="img/disappear-img/3.jpg" />
+    <img src="img/disappear-img/4.jpg" />
+    <img src="img/disappear-img/5.jpg" />
+    <img src="img/disappear-img/6.jpg" />
+    <a href="javascript:;" class="prve"></a>
+    <a href="javascript:;" class="next"></a>
+</div> 
+</body>
+</html>

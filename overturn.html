@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    .nav {
+        margin: 0;
+        padding: 50px;
+    }
+
+    .nav li {
+        float: left;
+        list-style: none;
+        padding: 0 15px;
+        -webkit-perspctive: 100px;
+    }
+
+    .nav a {
+        float: left;
+        position: relative;
+        width: 60px;
+        height: 30px;
+        line-height: 30px;
+        text-decoration: none;
+        font-size: 14px;
+        transition: 0.5s;
+        -webkit-transform-style: preserve-3d;
+        -webkit-transform-origin: center center -15px;
+    }
+
+    .nav span {
+        float: left;
+        width: 60px;
+        text-align: center;
+        -webkit-backface-visibility: hidden;
+    }
+
+    .nav span:nth-of-type(2) {
+        position: absolute;
+        left: 0;
+        top: -30px;
+        -webkit-transform-origin: bottom;
+        -webkit-transform: rotateX(90deg);
+    }
+
+    .nav a:hover {
+        -webkit-transform: rotateX(-90deg);
+    }
+
+</style>
+<body>
+<ul class="nav">
+    <li><a href="#">
+        <span>选项一</span>
+        <span>选项1</span>
+    </a>
+    </li>
+    <li><a href="#">
+        <span>选项二</span>
+        <span>选项2</span>
+    </a>
+    </li>
+    <li><a href="#">
+        <span>选项三</span>
+        <span>选项3</span>
+    </a>
+    </li>
+</ul>
+</body>
+</html>

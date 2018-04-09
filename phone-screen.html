@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>手机滑屏效果</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        body {
+            background: #333;
+        }
+
+        #box {
+            width: 900px;
+            height: 600px;
+            background: url(img/phone-screen-img/bg.png) no-repeat;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -300px 0 0 -450px;
+        }
+
+        #wrap {
+            position: absolute;
+            top: 121px;
+            left: 326px;
+            width: 240px;
+            height: 360px;
+            overflow: hidden;
+        }
+
+        #wrap ul {
+            height: 360px;
+            width: 960px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #wrap img {
+            float: left;
+            width: 240px;
+            height: 360px;
+        }
+    </style>
+</head>
+<script type="text/javascript">
+    window.onload = function () {
+        var oWrap = document.getElementById("wrap");
+        var aLi = oWrap.getElementsByTagName("li");
+        var oUl = oWrap.getElementsByTagName("ul")[0];
+        var aImg = oWrap.getElementsByTagName("img");
+        var disX = 0;
+        var downX = 0;
+        var iNow = 0;
+        var iSpeed = 0;
+        var timer = null;
+        oUl.onmousedown = function (ev) {
+            var ev = ev || window.event;
+            disX = ev.clientX - oUl.offsetLeft;
+            downX = ev.clientX;
+            document.onmousemove = function (ev) {
+                var ev = ev || window.event;
+                oUl.style.left = ev.clientX - disX + "px";
+            }
+            document.onmouseup = function (ev) {
+                document.onmousemove = null;
+                document.onmouseup = null;
+                var ev = ev || window.event;
+                if (ev.clientX < downX) {
+                    //alert(1);
+                    if (iNow != aLi.length - 1) {
+                        iNow++;
+                    }
+                    startMove(-iNow * aImg[0].offsetWidth);
+                }
+                else {
+                    //alert(2);
+                    if (iNow != 0) {
+                        iNow--;
+                    }
+                    startMove(-iNow * aImg[0].offsetWidth);
+                }
+            }
+            return false;
+        }
+
+        function startMove(iTarget) {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                iSpeed += (iTarget - oUl.offsetLeft) / 6;
+                iSpeed *= 0.75;
+                if (Math.abs(iSpeed) <= 1 && Math.abs(iTarget - oUl.offsetLeft) <= 1) {//abs如果参数是非负数返回参数，如果是负数返回相反数
+                    clearInterval(timer);
+                    iSpeed = 0;
+                    oUl.style.left = iTarget + "px";
+                } else {
+                    oUl.style.left = oUl.offsetLeft + iSpeed + "px";
+                }
+            }, 30);
+        }
+    }
+</script>
+<body>
+<div id="box">
+    <div id="wrap">
+        <ul>
+            <li><img src="img/phone-screen-img/1.jpg"/></li>
+            <li><img src="img/phone-screen-img/2.jpg"/></li>
+            <li><img src="img/phone-screen-img/7.jpg"/></li>
+            <li><img src="img/phone-screen-img/6.jpg"/></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>无标题文档</title>
+    <style type="text/css">
+        #div1 {
+            width: 180px;
+            height: 180px;
+            position: relative;
+        }
+
+        #img1 {
+            display: block;
+        }
+
+        #div2 {
+            width: 100px;
+            height: 100px;
+            display: none;
+            position: absolute;
+            background: #FF0;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+        }
+
+        #div3 {
+            width: 400px;
+            height: 400px;
+            border: 1px #000 solid;
+            position: absolute;
+            top: 8px;
+            left: 200px;
+            overflow: hidden;
+        }
+
+        #img2 {
+            position: absolute;
+            left: 0;
+            display: block;
+            top: 0;
+        }
+    </style>
+</head>
+<script type="text/javascript">
+    window.onload = function () {
+        var oDiv1 = document.getElementById("div1");
+        var oImg1 = oDiv1.getElementsByTagName("img")[0];
+        var oDiv2 = oDiv1.getElementsByTagName("div")[0];
+        var oDiv3 = document.getElementById("div3");
+        var oImg2 = document.getElementById("img2");
+        oDiv1.onmouseenter = function () {
+            oDiv2.style.display = 'block';
+        };
+        oDiv1.onmouseleave = function () {
+            oDiv2.style.display = 'none';
+
+        };
+        oDiv1.onmousemove = function (ev) {
+            var ev = ev || event;
+            var L = ev.clientX - oDiv2.offsetWidth / 2;
+            var T = ev.clientY - oDiv2.offsetHeight / 2;
+            if (L < 0) {
+                L = 0;
+            }
+            else if (L > oDiv1.offsetWidth - oDiv2.offsetWidth) {
+                L = oDiv1.offsetWidth - oDiv2.offsetWidth;
+            }
+            if (T < 0) {
+                T = 0;
+            }
+            else if (T > oDiv1.offsetHeight - oDiv2.offsetHeight) {
+                T = oDiv1.offsetHeight - oDiv2.offsetHeight;
+            }
+            scaleX = L / (oDiv1.offsetWidth - oDiv2.offsetWidth);
+            scaleY = T / (oDiv1.offsetHeight - oDiv2.offsetHeight);
+
+            oImg2.style.left = (oDiv3.clientWidth - oImg2.offsetWidth) * scaleX + "px";//div3不包含边框的宽
+            oImg2.style.top = (oDiv3.clientHeight - oImg2.offsetHeight) * scaleY + "px";
+            //alert(oImg2.offsetWidth);
+            oDiv2.style.left = L + "px";
+            oDiv2.style.top = T + "px";
+        }
+    }
+</script>
+<body>
+<div id="div1">
+    <img id="img1" src="img/b2.jpg"/>
+    <div id="div2"></div>
+</div>
+<div id="div3">
+    <img id="img2" src="img/b1.jpg"/>
+</div>
+<!--运用了onmouseenter，onmouseleave，onmousemove事件，以及client,offset-->
+</body>
+</html>

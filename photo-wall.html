@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>照片墙</title>
+    <style type="text/css">
+        #list {
+            margin: 50px auto 0;
+            padding: 0;
+            width: 840px;
+        }
+
+        li {
+            list-style: none;
+            margin: 0 10px 10px 0;
+            width: 200px;
+            height: 300px;
+            float: left;
+        }
+
+        #list img {
+            width: 200px;
+            height: 300px;
+        }
+    </style>
+</head>
+<script src="js/move.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        var oUl = document.getElementById("list");
+        var aLi = oUl.getElementsByTagName("li");
+        var oBtn = document.getElementById('btn');
+        var originPositionArr = [];
+        var iLen = aLi.length;
+        var zIndex = 1;
+
+        for (var i = 0; i < iLen; i++) {
+            originPositionArr.push({
+                left: aLi[i].offsetLeft,
+                top: aLi[i].offsetTop
+            });
+        }
+
+        for (var i = 0; i < iLen; i++) {
+
+            aLi[i].index = i;
+            aLi[i].style.left = originPositionArr[i].left + "px";
+            aLi[i].style.top = originPositionArr[i].top + "px";
+            aLi[i].style.position = "absolute";
+            drag(aLi[i]);
+        }
+        //在css中有些样式的权限级别比较高，当我们通过js去设置一些css样式属性，在一个作用域内（js代码块域），有的样式设置会被js预先解析
+        /*for(var i=0;i<aLi.length;i++){
+            aLi[i].style.left=aLi[i].offsetLeft+"px";
+            aLi[i].style.top=aLi[i].offsetTop+"px";
+            drag(aLi[i]);
+            }
+
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].style.position="absolute";
+                }*/
+
+        //随机
+        oBtn.onclick = function () {
+            var arr = [];
+            for (var i = 0; i < iLen; i++) {
+                arr.push(i);
+            }
+            arr.sort(function () {
+                return Math.random() - 0.5;
+            })
+
+            console.log(arr);
+
+            for (var i = 0; i < iLen; i++) {
+
+                var posIndex = arr[i];
+
+                aLi[i].index = posIndex;
+                move(aLi[i], {
+                    left: originPositionArr[posIndex].left,
+                    top: originPositionArr[posIndex].top
+                }, 1000, 'backOut');
+            }
+        }
+
+        //拖拽
+        function drag(obj) {
+
+            var disX = 0;
+            var disY = 0;
+            var o = null;
+
+            obj.onmousedown = function (ev) {
+                var e = ev || event;
+
+                obj.style.zIndex = zIndex++;
+
+                disX = e.clientX - obj.offsetLeft;
+                disY = e.clientY - obj.offsetTop;
+
+                document.onmousemove = function (ev) {
+                    var e = ev || event;
+
+                    obj.style.left = e.clientX - disX + 'px';
+                    obj.style.top = e.clientY - disY + 'px';
+
+                    //因为在碰撞的时候，也许会碰上多个元素，所以我们需要在for循环以后，才能去判断哪个被碰撞上的元素才是我们想要的，所有在这里，我们用一个数组去存碰上的元素
+                    var pzArr = [];
+                    //碰撞检测
+                    for (var i = 0; i < iLen; i++) {
+                        //检测碰撞的时候，排除自己（当前拖拽的元素）
+                        if (obj != aLi[i]) {
+                            pz(obj, aLi[i]) && pzArr.push(aLi[i]);
+                        }
+                    }
+
+                    //console.log(pzArr);
+
+                    //如果有多个被碰撞的元素，那么就要确定一下哪个元素才是我们想要的
+                    //把当前拖拽的元素和碰碰撞上的元素做一个中间点直线距离检测，距离最短，才是我们要的元素
+                    o = getShortObj(obj, pzArr);
+
+                    for (var i = 0; i < iLen; i++) {
+                        aLi[i].style.border = '0px solid red';
+                    }
+
+                    if (o) {
+                        o.style.border = '1px solid red';
+                    }
+                }
+
+                document.onmouseup = function () {
+                    document.onmousemove = document.onmouseup = null;
+
+                    if (!o) {
+                        //alert(obj.index);
+                        move(obj, {
+                            left: originPositionArr[obj.index].left,
+                            top: originPositionArr[obj.index].top
+                        }, 1000, 'backOut');
+                    } else {
+
+                        o.style.border = '';
+
+                        var p1 = originPositionArr[obj.index];
+                        var p2 = originPositionArr[o.index];
+
+                        move(obj, {
+                            left: p2.left,
+                            top: p2.top
+                        }, 1000, 'backOut');
+
+                        move(o, {
+                            left: p1.left,
+                            top: p1.top
+                        }, 1000, 'backOut');
+
+                        //交换元素的index
+                        var _index = obj.index;
+
+                        obj.index = o.index;
+                        o.index = _index;
+                    }
+
+                }
+
+                return false;
+            }
+
+        }
+
+        //碰撞检测
+        function pz(obj1, obj2) {
+            var L1 = obj1.offsetLeft;
+            var T1 = obj1.offsetTop;
+            var R1 = L1 + obj1.offsetWidth;
+            var B1 = T1 + obj1.offsetHeight;
+
+            var L2 = obj2.offsetLeft;
+            var T2 = obj2.offsetTop;
+            var R2 = L2 + obj2.offsetWidth;
+            var B2 = T2 + obj2.offsetHeight;
+
+            /*if (R1 < L2 || B1 < T2 || L1 > R2 || T1 > B2) {
+                return false;
+            } else {
+                return true;
+            }*/
+
+            return !(R1 < L2 || B1 < T2 || L1 > R2 || T1 > B2);
+        }
+
+        //计算一个元素和多个元素中直线距离最短的是谁
+        function getShortObj(obj, arr) {
+            var o = null;
+            var pos = 100000;
+
+            for (var i = 0; i < arr.length; i++) {
+                var a = (obj.offsetTop + obj.offsetHeight / 2) - (arr[i].offsetTop + arr[i].offsetHeight / 2);
+                var b = (obj.offsetLeft + obj.offsetWidth / 2) - (arr[i].offsetLeft + arr[i].offsetWidth / 2);
+                c = Math.sqrt(a * a + b * b);
+
+                if (c < pos) {
+                    pos = c;
+                    o = arr[i];
+                }
+            }
+
+            return o;
+        }
+
+    }
+</script>
+<body>
+<input type="button" value="随机" id="btn"/>
+<ul id="list">
+    <li><img src="img/photo-wall-img/1.jpg"/></li>
+    <li><img src="img/photo-wall-img/2.jpg"/></li>
+    <li><img src="img/photo-wall-img/3.jpg"/></li>
+    <li><img src="img/photo-wall-img/4.jpg"/></li>
+    <li><img src="img/photo-wall-img/5.jpg"/></li>
+    <li><img src="img/photo-wall-img/6.jpg"/></li>
+    <li><img src="img/photo-wall-img/7.jpg"/></li>
+    <li><img src="img/photo-wall-img/4.jpg"/></li>
+    <li><img src="img/photo-wall-img/5.jpg"/></li>
+    <li><img src="img/photo-wall-img/6.jpg"/></li>
+    <li><img src="img/photo-wall-img/1.jpg"/></li>
+    <li><img src="img/photo-wall-img/3.jpg"/></li>
+</ul>
+</body>
+</html>

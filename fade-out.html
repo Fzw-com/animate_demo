@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#box{width:550px;height:360px;margin:50px auto 0;padding:0;position:relative;}
+#box img{width:550px;height:360px;opacity:1;filter:alpha(opacity=100);position:absolute;z-index:1}
+</style>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById('box');
+	var oImg=oDiv.getElementsByTagName('img');
+	
+	var iSpeed=-5;
+	var timer=null;
+	
+	function getStyle(obj,attr){
+		return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+		}
+	
+	function autoPlay(){
+	var iCur=0;
+    var num=oImg.length-1;
+		timer=setInterval(function  fnTab(){
+			iCur=Math.round(getStyle(oImg[num],'opacity')*100);
+			oImg[num].style.opacity=(iCur+iSpeed)/100;
+			oImg[num].style.filter='alpha(opacity='+(iCur+iSpeed)+')';	
+	
+			if(iCur+iSpeed==10){	
+				num--;
+			    }
+			if(num<0){	
+			for(var i=0;i<oImg.length;i++){
+			oImg[i].style.opacity=1;
+			    }
+			num=oImg.length;
+			num--;
+			}						
+			},200);		
+		}
+		autoPlay();	
+	}
+</script>
+</head>
+
+<body>
+	<div id="box">
+    	<img src="img/fade-out-img/1.jpg" />
+        <img src="img/fade-out-img/2.jpg" />
+        <img src="img/fade-out-img/3.jpg" />
+        <img src="img/fade-out-img/4.jpg" />
+    </div>
+</body>
+</html>

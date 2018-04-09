@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>菜单展开效果</title>
+    <style type="text/css">
+        body {
+            background: #f9f9f9;
+        }
+
+        #menu {
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+        }
+
+        #menu_list {
+            height: 42px;
+            width: 42px;
+            position: relative;
+            margin: 4px;
+        }
+
+        #menu_list img {
+            border-radius: 21px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            -webkit-transition: 0.5s all ease;
+        }
+
+        #home {
+            width: 50px;
+            height: 50px;
+            background: url(img/unfold-menu/home.png) no-repeat;
+            border-radius: 25px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: 1s;
+        }
+    </style>
+</head>
+<script type="text/javascript">
+    window.onload = function () {
+        var oList = document.getElementById('menu_list');
+        var oHome = oList.getElementsByTagName('div')[0];
+        var aImg = document.getElementsByTagName('img');
+        var onOff = true;
+        var iR = -150;
+
+        for (var i = 0; i < aImg.length; i++) {
+            aImg[i].onclick = function () {
+                this.style.transition = "0.3s";
+                this.style.WebkitTransform = "scale(2)";
+                this.style.opacity = 0.3;
+            }
+        }
+        for (var i = 0; i < aImg.length; i++) {
+            aImg[i].onmouseout = function () {
+                this.style.transition = "0.3s";
+                this.style.WebkitTransform = "scale(1)";
+                this.style.opacity = 1;
+            }
+        }
+        oHome.onclick = function () {
+            if (onOff) {
+                this.style.WebkitTransform = "rotate(-360deg)";
+                for (var i = 0; i < aImg.length; i++) {
+                    var oLt = toLT(iR, 90 / 4 * i);
+                    aImg[i].style.transition = "0.5s " + i * 100 + "ms";//是两个值，0.5s后面要有空格
+                    aImg[i].style.left = oLt.l + "px";
+                    aImg[i].style.top = oLt.t + "px";
+                    aImg[i].style.WebkitTransform = "rotate(-720deg)";
+                }
+
+            } else {
+                this.style.WebkitTransform = "rotate(0deg)";
+                for (var i = 0; i < aImg.length; i++) {
+                    aImg[i].style.transition = "0.5s " + (aImg.length - i - 1) * 100 + "ms";//是两个值，0.5s后面要有空格
+                    aImg[i].style.left = 0 + "px";
+                    aImg[i].style.top = 0 + "px";
+                    aImg[i].style.WebkitTransform = "rotate(0deg)";
+                }
+            }
+            onOff = !onOff;
+        }
+
+        function toLT(iR, iDeg) {
+            //弹出元素的left和top值
+            return {
+                l: Math.round(Math.sin(iDeg / 180 * Math.PI) * iR),
+                t: Math.round(Math.cos(iDeg / 180 * Math.PI) * iR)
+            }
+        }
+    }
+</script>
+<body>
+<div id="menu">
+    <div id="menu_list">
+        <img src="img/unfold-menu/clos.png"/>
+        <img src="img/unfold-menu/full.png"/>
+        <img src="img/unfold-menu/open.png"/>
+        <img src="img/unfold-menu/prev.png"/>
+        <img src="img/unfold-menu/refresh.png"/>
+        <div id="home"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>canvas-circle2绘制随机运动的圆</title>
+    <style>
+        body{background: #000000;}
+        #c1{background: #ffffff;}
+    </style>
+    <script>
+        window.onload=function(){
+            var oC=document.getElementById('c1');
+            var oGC=oC.getContext('2d');
+            var setArr=[];
+
+            setInterval(function(){//进行运动操作
+
+                oGC.clearRect(0,0,oC.width,oC.height);
+
+                for(var i=0;i<setArr.length;i++){
+                    setArr[i].r+=1;//半径每次增大1
+                    setArr[i].c4-=0.01;
+
+                    if(setArr[i].c4<=0){//删除背景为透明的，避免元素过大
+                       setArr.splice(i,1);
+                    }
+                }
+                for(var i=0;i<setArr.length;i++){
+                    oGC.beginPath();
+                    oGC.fillStyle='rgba('+setArr[i].c1+','+setArr[i].c2+','+setArr[i].c3+','+setArr[i].c4+')';
+                    oGC.moveTo(setArr[i].x,setArr[i].y);
+                    oGC.arc(setArr[i].x,setArr[i].y,setArr[i].r,0,360*Math.PI/180,false);
+                    oGC.closePath();
+                    oGC.fill();
+                }
+
+            },1000/60);
+
+            setInterval(function(){//添加数据
+
+                var x=Math.floor(Math.random()*oC.width);//随机产生圆的x值
+                var y=Math.floor(Math.random()*oC.height);//随机产生圆的y值
+                var r=4;//圆的半径
+                //随机产生圆的颜色rgb
+                var c1=Math.floor(Math.random()*255);
+                var c2=Math.floor(Math.random()*255);
+                var c3=Math.floor(Math.random()*255);
+                var c4=1;//设置透明度
+
+                setArr.push({
+                    x : x,
+                    y : y,
+                    r : r,
+                    c1 : c1,
+                    c2 : c2,
+                    c3 : c3,
+                    c4 : c4
+                });
+
+            },500);//往数组中放元素
+        }
+    </script>
+</head>
+<body>
+    <canvas id="c1" width="400" height="400"></canvas>
+</body>
+</html>

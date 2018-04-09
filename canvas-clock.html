@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>canvas画时钟</title>
+<style type="text/css">
+body{background:#000;}
+#c1{background:#fff;}
+</style>
+</head>
+<script type="text/javascript">
+window.onload=function(){
+	var oC1=document.getElementById('c1')
+	var oGC=oC1.getContext('2d');
+    
+	function toDraw(){
+		var x=200;
+		var y=200;
+		var r=150;
+		
+	    oGC.clearRect(0,0,oC1.width,oC1.height);
+		
+		var iDate=new Date();
+		var iHou=iDate.getHours();
+		var iMin=iDate.getMinutes();
+		var iSce=iDate.getSeconds();
+		
+		var oHoursValue = (-90 + iHou*30 + iMin/2) * Math.PI/180;
+		var oMinValue = (-90 + iMin*6) * Math.PI/180;
+		var oSenValue = (-90 + iSce*6) * Math.PI/180;
+	   
+	    oGC.beginPath();
+	
+		for(var i=0;i<60;i++){
+			oGC.moveTo(x,y);
+			oGC.arc(x,y,r,6*i*Math.PI/180,6*(i+1)*Math.PI/180,false);
+			}
+			
+			oGC.closePath();
+			
+			oGC.stroke();
+			
+			oGC.fillStyle='#fff';
+			
+		
+		
+		 oGC.beginPath();
+		
+		oGC.moveTo(x,y);
+		
+		oGC.arc(x,y,r*19/20,0,360*(i+1)*Math.PI/180,false);
+		
+		oGC.closePath();
+		
+		oGC.fill();	 
+	   
+	   
+	   
+	    oGC.lineWidth=3;
+		
+		oGC.beginPath();
+		
+		for(var i=0;i<12;i++){
+		
+		oGC.moveTo(x,y);
+		
+		oGC.arc(x,y,r,30*i*Math.PI/180,30*(i+1)*Math.PI/180,false);
+		}
+		
+		oGC.closePath();
+		
+		oGC.stroke();
+		
+		oGC.fillStyle = '#fff';
+		
+		
+	    oGC.beginPath();
+		
+		oGC.moveTo(x,y);
+		
+		oGC.arc(x,y,r*18/20,0,360*(i+1)*Math.PI/180,false);
+		
+		oGC.closePath();
+		
+		oGC.fill();
+		
+		
+		oGC.lineWidth = 5;
+		oGC.beginPath();
+		oGC.moveTo(x,y);
+		oGC.arc(x,y,r*9/20,oHoursValue,oHoursValue,false);
+		
+		oGC.closePath();
+		oGC.stroke();   
+	
+	
+	 oGC.lineWidth = 3;
+		oGC.beginPath();
+		oGC.moveTo(x,y);
+		oGC.arc(x,y,r*13/20,oMinValue,oMinValue,false);
+		
+		oGC.closePath();
+		oGC.stroke();   
+		
+		
+		oGC.lineWidth = 1;
+		oGC.beginPath();
+		oGC.moveTo(x,y);
+		oGC.arc(x,y,r*18/20,oSenValue,oSenValue,false);
+		
+		oGC.closePath();
+		oGC.stroke();   
+		}
+		setInterval(toDraw,1000);
+		toDraw();
+	}
+</script>
+<body>
+<canvas id="c1" width="400" height="400"></canvas>
+</body>
+

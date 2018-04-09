@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+  img{
+    width:100px;
+	top:100px;
+	left:60px;
+	height:150px;
+	position:absolute;
+  }
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	var aImg=document.getElementsByTagName("img");
+		  for(i=0;i<aImg.length;i++){
+		  aImg[i].style.left=80+i*110+"px";
+		  aImg[i].pos=parseInt(getStyle(aImg[i],"top"));
+            // alert(aImg[i].pos);
+		  aImg[i].onmouseover=function(){
+			  shake(this,"top");
+			  }
+		}
+		function getStyle(obj,attr){
+			return obj.currentStyle ? obj.currentStyle[attr]:getComputedStyle(obj)[attr];}	
+		function shake(obj,attr,endFn){
+			var num=0;
+	        var arr=[];
+			
+			for(var i=20;i>0;i-=2){
+			 arr.push(i,-i);
+                console.log(arr);
+			}
+			arr.push(0);
+			clearInterval(obj.shake);
+			obj.shake=setInterval(function(){
+				obj.style[attr]=aImg[i].pos+arr[num]+"px";
+				num++;
+				if(num==arr.length){
+				  clearInterval(obj.shake);
+				  endFn && endFn();
+				}
+				},30);
+		}
+	}	
+</script>
+</head>
+
+<body>
+	<img src="img/shake-img/1.jpg" />
+    <img src="img/shake-img/2.jpg" />
+    <img src="img/shake-img/3.jpg" />
+    <img src="img/shake-img/4.jpg" />
+    <img src="img/shake-img/5.jpg" />
+    <img src="img/shake-img/6.jpg" />
+    <img src="img/shake-img/7.jpg" />
+    <img src="img/shake-img/8.jpg" />
+</body>
+</html>

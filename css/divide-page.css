@@ -1,0 +1,93 @@
+#div1 {
+    width: 30px;
+    height: 500px;
+    background: #ACD6E6;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+#div2 {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background: #9236C9;
+    left: 0;
+    top: 0;
+}
+
+.img1 {
+    width: 380px;
+    height: 0;
+    position: absolute;
+    left: 55px;
+    top: 10px;
+}
+
+#divide-div1 {
+    margin-top: 50px;
+}
+
+/*图片排序*/
+#wrap1 {
+    width: 1265px;
+    /*margin: 0 auto;*/
+
+    position: relative;
+    height:700px;
+}
+
+#wrap1 input {
+    background: #009999;
+    width: 116px;
+    height: 36px;
+    color: white;
+    line-height: 36px;
+    position: absolute;
+    top: 31px;
+}
+
+#btn1 {
+    left: 50px;
+}
+
+#btn2 {
+    left: 180px;
+}
+
+#wrap1 img {
+    width: 150px;
+    height: 230px;
+}
+
+#wrap1 ul {
+    width: 688px;
+    position: absolute;
+
+}
+
+#col {
+    top: 88px;
+}
+
+#wrap1 li {
+    width: 150px;
+    height: 273px;
+    background: white;
+    padding: 10px;
+    float: left;
+    margin-right: 2px;
+    list-style: none;
+}
+
+#wrap1 p {
+    width: 150px;
+    height: 43px;
+    line-height: 43px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    background: #f1f1f1;
+    color: #006699
+}
+

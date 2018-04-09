@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+/*样式重置*/
+html, body {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+body, ul, ol, dl, dd, h1, h2, h3, h4, h5, h6, p, input, select, textarea, form {
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+img {
+    border: none;
+    display: block;
+}
+
+input, select, textarea, button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+textarea {
+    resize: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1em;
+}
+
+em {
+    font-style: normal;
+}
+
+/*浮动*/
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clearfix:after,
+.clearfix:before {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}

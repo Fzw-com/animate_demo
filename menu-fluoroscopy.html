@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>菜单透视</title>
+    <style type="text/css">
+        #list {
+            margin: 30px auto 0;
+            padding: 0;
+            width: 643px;
+            position: relative;
+        }
+
+        #list li {
+            width: 120px;
+            height: 30px;
+            font-size: 18px;
+            line-height: 30px;
+            list-style: none;
+            float: left;
+            text-align: center;
+            background: #B0FF62;
+            color: #999;
+            border: 1px #CCCCCC solid;
+            margin-right: 5px;
+            padding: 0;
+        }
+
+        #list #mark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        #list #mark ul {
+            width: 643px;
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            padding: 0;
+        }
+
+        #list #mark ul li {
+            color: #fff;
+        }
+    </style>
+</head>
+<script type="text/javascript">
+    window.onload = function () {
+        var oUl = document.getElementById("list");
+        var oMark = document.getElementById("mark");
+        var aBox = oUl.getElementsByClassName("box");
+        var childUl = oMark.getElementsByTagName("ul")[0];
+        var timer = null;
+        var timer2 = null;
+        var iSpeed = 0;
+        for (var i = 0; i < aBox.length; i++) {
+            aBox[i].onmouseover = function () {
+                clearInterval(timer2);
+                startMove(this.offsetLeft);
+            }
+            aBox[i].onmouseout = function () {
+                timer2 = setTimeout(function () {
+                    startMove(0);//延迟定时器
+                }, 100)
+            }
+        }
+        oMark.onmouseover = function () {
+            clearInterval(timer2);
+        }
+        oMark.onmouseout = function () {
+            timer2 = setTimeout(function () {
+                startMove(0);
+            }, 100);
+        }
+
+        function startMove(iTarget) {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                iSpeed += (iTarget - oMark.offsetLeft) / 6;
+                iSpeed = iSpeed * 0.75;
+                if (Math.abs(iSpeed) <= 1 && Math.abs(iTarget - oMark.offsetLeft) <= 1) {
+                    clearInterval(timer);
+                    oMark.style.left = iTarget + "px";
+                    childUl.style.left = -iTarget + "px";
+                    iSpeed = 0;
+                } else {
+                    var H = oMark.offsetLeft + iSpeed//处理IE下宽高不能为负数（弹性过界问题）
+                    if (H < 0) {
+                        H = 0;
+                    } else {
+                        oMark.style.left = H + "px";
+                        childUl.style.left = -oMark.offsetLeft + "px";//透视效果，childUl在最上面一层，oMark在往右边走的时候，childUl必须往左边走，才可以看到下一个标题,如果不加这句，子元素也会相对父级向右运动
+                    }
+                }
+            }, 30)
+        }
+    }
+</script>
+<body>
+<ul id="list" class="class_type">
+    <li id="mark" class="active">
+        <ul>
+            <li>国语</li>
+            <li>英语</li>
+            <li>数学</li>
+            <li>科学</li>
+            <li>社会</li>
+        </ul>
+    </li>
+    <li class="box">国语</li>
+    <li class="box">英语</li>
+    <li class="box">数学</li>
+    <li class="box">科学</li>
+    <li class="box">社会</li>
+</ul>
+</body>
+</html>

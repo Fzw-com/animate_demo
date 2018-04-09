@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>无标题文档</title>
+    <style type="text/css">
+        body, html {
+            height: 100%;
+        }
+
+        body, ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .bg {
+
+            width: 100%;
+            height: 100%;
+            background: #231f20;
+            padding: 60px;
+        }
+
+        .list {
+            margin-bottom: 100px;
+        }
+
+        .list li {
+            background: url(img/css-img/picL.jpg) no-repeat;
+            float: left;
+            width: 95px;
+            margin: 2px;
+            list-style: none;
+        }
+
+        .list span {
+            background: url(img/css-img/nav_hover.png) no-repeat center 50px;
+            display: block;
+            text-align: center;
+            height: 23px;
+        }
+
+        .list a:hover span, .active {
+            background-position: center 0;
+        }
+
+        .list a:hover {
+            color: #fc0;
+        }
+
+        .list a {
+            font-size: 10px;
+            color: #bbc2d2;
+            padding: 0;
+            background: url(img/css-img/picR.jpg) no-repeat right 0;
+            float: left;
+            width: 95px;
+            text-align: center;
+            line-height: 24px;
+            text-decoration: none;
+
+        }
+
+        .common ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .common a {
+            text-decoration: none;
+        }
+
+        .common li {
+            list-style: none;
+        }
+
+        #list {
+            width: 810px;
+            height: 30px;
+            padding: 4px 0 4px 50px;
+            border-radius: 10px;
+            background: #4273a5;
+        }
+
+        #list li {
+            height: 30px;
+            float: left;
+            color: #FFF;
+            width: 92px;
+            font-size: 16px;
+            line-height: 30px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #list li:hover {
+            background: #7b9cc6;
+        }
+
+        #list a {
+            float: right;
+            color: #fff;
+            font-size: 16px;
+            margin-right: 40px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .common ul.child {
+            background: #e3ecf1;
+            position: absolute;
+            top: 60px;
+            border-radius: 8px;
+            float: left;
+            display: block;
+        }
+
+        .child li {
+            border-right: 1px #494EA0 solid;
+            margin: 5px 0;
+            height: 20px;
+            line-height: 20px;
+            float: left;
+            padding: 0 15px;
+        }
+
+        .child .hide {
+            border-right: 1px #e3ecf1 solid;
+        }
+
+        .common li a {
+            color: #4273a5;
+            font-size: 16px;
+        }
+
+        ul.one {
+            left: 50px;
+            display: none;
+        }
+
+        ul.two {
+            left: 150px;
+            display: none;
+        }
+
+        ul.three {
+            left: 240px;
+            display: none;
+        }
+
+        ul.four {
+            left: 335px;
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var oUl = document.getElementById("list");
+            var oLi = oUl.getElementsByTagName("li");
+            var oUl1 = document.getElementsByClassName("child");
+            var timer1 = null;
+            var timer2 = null;
+            var num = null;
+            for (i = 0; i < oLi.length; i++) {
+                oLi[i].index = i;
+                oLi[i].onmouseover = function () {
+                    for (var i = 0; i < oUl1.length; i++) {
+                        oUl1[i].style.display = "none";
+                    }
+                    oUl1[this.index].style.display = "block";
+
+                };
+                oLi[i].onmouseout = function () {
+                    console.log(this.index);
+                    num = this.index;
+                    timer2 = setTimeout(function () {
+                        oUl1[num].style.display = "none";
+                    }, 500);
+                }
+            }
+            for (i = 0; i < oLi.length; i++) {
+                oUl1[i].onmouseover = function () {
+                    this.style.display = "block";
+                    clearTimeout(timer2);
+                }
+            }
+            for (i = 0; i < oLi.length; i++) {
+                oUl1[i].onmouseout = function () {
+                    var that = this;
+                    that.style.display = "none";
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+<div class="bg">
+    <ul class="list">
+        <li><a href="#"><span class="active">Home</span></a></li>
+        <li><a href="#"><span>About us</span></a></li>
+        <li><a href="#"><span>Contact us</span></a></li>
+        <li><a href="#"><span>Products</span></a></li>
+    </ul>
+    <!--延时消失的菜单-->
+    <ul class="common" id="list">
+        <li>首页</li>
+        <li>关于我们</li>
+        <li>作品</li>
+        <li>博客</li>
+        <a href="#">>>更多</a>
+    </ul>
+    <ul class="common child one">
+        <li><a href="#">最近更新</a></li>
+        <li><a href="#">活动</a></li>
+        <li><a href="#">报名试听</a></li>
+        <li class="hide"><a href="#">学员反馈</a></li>
+    </ul>
+    <ul class="common child two">
+        <li><a href="#">妙味课堂</a></li>
+        <li><a href="#">培训方式</a></li>
+        <li><a href="#">培训理念</a></li>
+        <li class="hide"><a href="#">联系我们</a></li>
+    </ul>
+    <ul class="common child three">
+        <li><a href="#">般固</a></li>
+        <li><a href="#">MATRIX</a></li>
+        <li><a href="#">留学E网</a></li>
+        <li class="hide"><a href="#">ECMall</a></li>
+    </ul>
+    <ul class="common child four">
+        <li><a href="#">JS教程</a></li>
+        <li><a href="#">弹出层效果</a></li>
+        <li><a href="#">3D球面标签云</a></li>
+        <li class="hide"><a href="#">Windows计算器</a></li>
+    </ul>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>模仿苹果手机放大效果</title>
+<style type="text/css">
+#div1{width:100%; position: fixed;bottom:20px;left:0;text-align:center;}
+#div1 img{width:64px;}
+</style>
+</head>
+<script type="text/javascript">
+window.onload=function(){
+	var oDiv=document.getElementById("div1");
+	var aImg=oDiv.getElementsByTagName("img");
+	
+	document.onmousemove=function(ev){
+		
+		//因为鼠标是到可视区的距离，所以，我们应该获取鼠标到可视区的距离-元素到可视区的距离
+		var ev=ev || event;
+		for(var i=0;i<aImg.length;i++){
+			var b=Math.abs(ev.clientX-aImg[i].getBoundingClientRect().x-aImg[i].offsetWidth/2); 
+			var a=Math.abs(ev.clientY-aImg[i].getBoundingClientRect().y-aImg[i].offsetHeight/2);
+			var c=Math.sqrt(a*a+b*b);
+			//getBoundingClientRect()是获取元素上下左右的值
+			
+			if (c > 300) {
+			     c = 300;
+						}
+						
+			aImg[i].style.width = 128 - ( c * 0.2 ) + 'px';
+						
+			}
+		}
+	}
+</script>
+<body>
+<div id="div1">
+	<img src="img/magnify-img/1.png" />
+    <img src="img/magnify-img/2.png" />
+    <img src="img/magnify-img/3.png" />
+    <img src="img/magnify-img/4.png" />
+    <img src="img/magnify-img/5.png" />
+</div>
+</body>
+</html>

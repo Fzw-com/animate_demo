@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        /*body{background:#000;text-align:center;font:50px/120px "微软雅黑";}
+        h1{display:inline-block;color:rgba(255,255,255,0.3);background:-webkit-linear-gradient(-30deg,rgba(255,255,255,0),100px,rgba(255,255,255,1),180px,rgba(255,255,255,1),240px,rgba(255,255,255,0),300px) -300px 0 no-repeat;-webkit-background-clip:text;}*/
+        body {
+            background: #000;
+            text-align: center;
+            font: 50px/200px "微软雅黑";
+        }
+
+        h1 {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.3);
+            background: -webkit-linear-gradient(-30deg, rgba(255, 255, 255, 0) 100px, rgba(255, 255, 255, 1) 180px, rgba(255, 255, 255, 1) 240px, rgba(255, 255, 255, 0) 300px) -300px 0 no-repeat;
+            -webkit-background-clip: text;
+        }
+    </style>
+    <title>Iphone开机动画</title>
+</head>
+
+<body>
+<h1>Iphone开机动画</h1>
+<script type="text/javascript">
+    var aH = document.getElementsByTagName('h1')[0];
+    var iLeft = -300;
+    var timer = null;
+    document.title = 0;
+
+    function toMove() {
+        timer = setInterval(function () {
+            iLeft += 10;
+            if (iLeft == 1000) {
+                iLeft = -300;
+                clearInterval(timer);
+            }
+            aH.style.backgroundPosition = iLeft + "px 0px";
+        }, 20);
+    }
+
+    toMove();
+    setInterval(function () {
+        toMove();
+    }, 5000);
+
+</script>
+</body>
+</html>

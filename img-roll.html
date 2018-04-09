@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+div,img{padding:0;margin:0;}
+#box{width:280px;border:2px #999999 solid;margin:50px auto 0;padding:5px;position:relative;}
+#pic{width:280px;}
+#pic img{width:60px;height:100px;opacity:0.2;margin:5px 3px;}
+#picShow{width:200px;height:300px;margin:5px 40px 0;}
+#picShow img{width:200px;height:300px;}
+</style>
+<script>
+window.onload=function(){
+	var oPic=document.getElementById('pic');
+	var oImg=oPic.getElementsByTagName('img');
+	var oPicShow=document.getElementById('picShow');
+	var aImg=oPicShow.getElementsByTagName('img')[0];
+    var num=0;	
+	
+	function autoPlay(){
+		setInterval(function(){
+			num++;
+			num%=oImg.length;
+			fnTab(num);
+
+			},1500);
+			
+		}
+		autoPlay();
+		function fnTab(num){
+			for(var i=0;i<oImg.length;i++){
+				oImg[i].style.opacity=0.2;
+				}
+				oImg[num].style.opacity=1;
+			aImg.src="img/roll-img/"+num+".jpg";
+	}
+}
+</script>
+</head>
+
+<body>
+	<div id="box">
+    	<div id="pic">
+        	<img style="opacity:1" src="img/roll-img/0.jpg" />
+            <img src="img/roll-img/1.jpg" />
+            <img src="img/roll-img/2.jpg" />
+            <img src="img/roll-img/3.jpg" />
+            <img src="img/roll-img/4.jpg" />
+            <img src="img/roll-img/5.jpg" />
+            <img src="img/roll-img/6.jpg" />
+            <img src="img/roll-img/7.jpg" />
+        </div>
+        <div id="picShow">
+        	<img src="img/roll-img/0.jpg" />
+        </div>
+    </div>
+</body>
+</html>

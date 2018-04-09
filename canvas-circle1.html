@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>canvas绘制上下移动的圆</title>
+    <style>
+        body{background: #000000;}
+        #c1{background: #ffffff;}
+    </style>
+    <script>
+        window.onload=function(){
+            var oC=document.getElementById('c1');
+            var oGC=oC.getContext('2d');
+            var setArr=[];
+
+            oC.width=document.documentElement.clientWidth;
+
+            setInterval(function(){//进行运动操作
+
+                oGC.clearRect(0,0,oC.width,oC.height);
+
+                for(var i=0;i<setArr.length;i++){
+                 setArr[i].Y+=0.02;//使圆做抛物线运动
+
+                   setArr[i].x+=setArr[i].X;
+                   setArr[i].y+=setArr[i].Y;
+                }
+                for(var i=0;i<setArr.length;i++){
+                    oGC.beginPath();
+                    oGC.fillStyle='rgba('+setArr[i].c1+','+setArr[i].c2+','+setArr[i].c3+','+setArr[i].c4+')';
+                    oGC.moveTo(setArr[i].x,setArr[i].y);
+                    oGC.arc(setArr[i].x,setArr[i].y,setArr[i].r,0,360*Math.PI/180,false);
+                    oGC.closePath();
+                    oGC.fill();
+                }
+
+            },1000/60);
+
+            setInterval(function(){//添加数据
+
+                var x=oC.width/2;//随机产生圆的x值
+                var y=oC.height-20;//随机产生圆的y值
+                var r=8;//圆的半径
+                //随机产生圆的颜色rgb
+                var c1=Math.floor(Math.random()*255);
+                var c2=Math.floor(Math.random()*255);
+                var c3=Math.floor(Math.random()*255);
+                var c4=1;//设置透明度
+                var X=Math.random()*6-3;//产生-3到3之间的数
+                var Y=-(Math.random()*3+1);//1到4之间的数
+
+                setArr.push({
+                    x : x,
+                    y : y,
+                    r : r,
+                    c1 : c1,
+                    c2 : c2,
+                    c3 : c3,
+                    c4 : c4,
+                    X : X,
+                    Y : Y
+                });
+
+            },500);//往数组中放元素
+        }
+    </script>
+</head>
+<body>
+<canvas id="c1" width="400" height="400"></canvas>
+</body>
+</html>

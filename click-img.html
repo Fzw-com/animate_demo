@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+#div1{
+   width:500px;
+   height:60px;
+   position:relative;
+   border:1px #000000 solid;
+   margin:220px auto 0;
+}
+img{
+   width:50px;
+   height:60px;
+   position:absolute;
+   float:left;
+   bottom:0;
+   top:0;
+   z-index:2;
+}
+p{
+   width:0;
+   margin:0;
+   height:60px;
+   position:absolute;
+   background:#1E9EAC;
+   bottom:0;
+   z-index:1;
+   opacity:0;
+   left:0;
+}
+</style>
+</head>
+<script type="text/javascript">
+
+   function doMove(obj, num, attr, target, endFn){
+     
+     clearInterval(obj.timer);
+	 
+	 num = parseInt( getStyle(obj,attr))<target ? num : -num;
+	
+	 obj.timer=setInterval(function(){
+		 
+		 var speed=parseInt(getStyle(obj,attr))+num;
+		
+		 if(speed>target && num>0 || speed<target && num<0){
+		    speed=target;
+		 }
+		 
+		 obj.style[attr]=speed+'px';
+		 
+		 if(speed==target){
+		 clearInterval(obj.timer);
+		 endFn && endFn();
+		 }
+		 
+	 },30);
+	 
+	 }
+    function getStyle(obj, attr) {
+	return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,0)[attr];
+}
+
+	 function opacity(obj,num,target,endFn){
+		 
+	   clearInterval(obj.opacity);
+	   
+	   num=Math.floor(getStyle(obj,'opacity')*100)<target ? num : -num;
+	   
+	   obj.opacity=setInterval(function(){
+		   
+	   var speed=Math.floor(getStyle(obj,'opacity')*100)+num;
+	   
+	   if(speed>target && num>0 || speed<target && num<0){
+	     speed=target;
+	   }
+	   
+	    obj.style.filter = 'alpha(opacity='+ speed +')';
+		obj.style.opacity = speed/100;
+		
+		if(speed==target){
+		  clearInterval(obj.opacity);
+		  endFn && endFn();
+		}
+		
+	   },30);
+	   
+    }
+	
+   window.onload=function(){
+   var oDiv=document.getElementById("div1");
+   var oImg=document.getElementsByTagName("img");
+   var oP=document.getElementsByTagName("p")[0];
+    for(var i=0;i<oImg.length;i++){
+	oImg[i].style.left=i*50+'px'; 
+	 } 
+   oDiv.onclick=function(){
+    if ( this.onOff ) return;
+	this.onOff = true;
+	 var n=0;
+	 var num=0;
+	 
+	 var timer=setInterval(function(){
+		 opacity(oImg[num],8,0); 
+		 doMove(oImg[num],14,'top',-160,function(){
+		  n++;
+		  if(n==oImg.length){
+		  for(var i=0;i<oImg.length;i++){
+		    oImg[i].style.top=0;
+			 opacity(oImg[i],8,100);
+		  }
+		  }
+		});
+		 
+		 		
+		opacity(oP, 12, 100, function() {
+			opacity(oP, 5, 0, function() {
+				oP.style.width = 0;
+				
+				oDiv.onOff = false;
+			});
+		});
+		doMove(oP, 32, 'width', 500);
+
+		num++;
+		if (num == oImg.length) {
+			clearInterval(timer);
+		}
+		 },50);
+	 }
+}
+</script>
+<body>
+<div id="div1">
+<img src="img/click-img/1.jpg" />
+<img src="img/click-img/2.jpg" />
+<img src="img/click-img/3.jpg" />
+<img src="img/click-img/4.jpg" />
+<img src="img/click-img/5.jpg" />
+<img src="img/click-img/6.jpg" />
+<img src="img/click-img/7.jpg" />
+<img src="img/click-img/8.jpg" />
+<img src="img/click-img/9.jpg" />
+<img src="img/click-img/10.jpg" />
+<p></p>
+</div>
+</body>
+</html>
